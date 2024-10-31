@@ -5,6 +5,7 @@
 
 ## ⌨️ The Project:
 This project has `0.0` decimal components plus addition, subtraction, multiplication and division in some parts.
+
 <img 
     alt="Machine Learning" 
     src="https://img.shields.io/badge/Machine%20Learning-FFD700?style=for-the-badge&logo=python&logoColor=black"
