@@ -13,3 +13,7 @@ This project is going to be placed inside a site.
     alt="Machine Learning" 
     src="https://img.shields.io/badge/Machine%20Learning-FFD700?style=for-the-badge&logo=python&logoColor=black"
 />
+<img
+    alt="Django"
+    src="https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white"
+/>
