@@ -6,7 +6,26 @@
 ## ⌨️ The Project:
 This project has `0.0` decimal components plus addition, subtraction, multiplication and division in some parts.
 
+## 🎃 Site:
+This project is going to be placed inside a site.
+
 <img 
     alt="Machine Learning" 
     src="https://img.shields.io/badge/Machine%20Learning-FFD700?style=for-the-badge&logo=python&logoColor=black"
+/>
+<img
+    alt="Django"
+    src="https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white"
+/>
+<img
+    alt="JavaScript"
+    src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"
+/>
+<img
+    alt="HTML"
+    src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white"
+/>
+<img
+    alt="CSS"
+    src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white"
 />
