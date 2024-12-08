@@ -3,30 +3,192 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Addition</title>
+    <title>3D Math Operations with GSAP</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <style>
-      h1 {
-        color: #9a70ff;
-        font-size: 2em;
-        margin-bottom: 20px;
+      /* General Styles */
+      body {
+        font-family: "Roboto", sans-serif;
+        background: linear-gradient(135deg, #f4f4f9, #dcdcff);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        overflow: hidden;
       }
 
-      .Add {
-        font-family: "Roboto", sans-serif; /* Use only Roboto font */
-        background-color: #9a70ff; /* Purple background */
-        color: #fff; /* White text */
-        padding: 15px 20px;
-        border-radius: 5px; /* Rounded corners */
-        font-size: 1.5em;
-        font-weight: normal;
-        text-transform: capitalize;
-        letter-spacing: 1px;
-        cursor: default; /* Prevent pointer click behavior */
+      .container {
+        background: #ffffff;
+        padding: 30px 40px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transform-style: preserve-3d;
+      }
+
+      h1 {
+        font-size: 2rem;
+        color: #6a5acd;
+        margin-bottom: 20px;
         text-align: center;
+        font-weight: 600;
+        letter-spacing: 2px;
+        opacity: 0;
+      }
+
+      input {
+        width: 100%;
+        padding: 15px;
+        margin: 10px 0;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        font-size: 1rem;
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      select {
+        width: 100%;
+        padding: 15px;
+        margin: 10px 0;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        font-size: 1rem;
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      button {
+        width: 100%;
+        padding: 15px;
+        margin-top: 10px;
+        border: none;
+        border-radius: 10px;
+        font-size: 1rem;
+        font-weight: bold;
+        cursor: pointer;
+        background: linear-gradient(135deg, #6a5acd, #836fff);
+        color: #fff;
+        box-shadow: 0 5px 15px rgba(106, 90, 205, 0.3);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      button:hover {
+        transform: scale(1.05);
+        box-shadow: 0 10px 20px rgba(106, 90, 205, 0.4);
+      }
+
+      .result {
+        margin-top: 20px;
+        padding: 15px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #fff;
+        background: linear-gradient(135deg, #7b68ee, #6a5acd);
+        border-radius: 10px;
+        text-align: center;
+        opacity: 0;
+        transform: scale(0);
       }
     </style>
   </head>
   <body>
-    <h1 class="Add">Addition Page</h1>
+    <div class="container">
+      <h1>Math Operations</h1>
+      <input type="number" id="number1" placeholder="Enter first number" />
+      <input type="number" id="number2" placeholder="Enter second number" />
+      <select id="operation">
+        <option value="add">Addition</option>
+        <option value="subtract">Subtraction</option>
+        <option value="multiply">Multiplication</option>
+        <option value="divide">Division</option>
+      </select>
+      <button onclick="calculate()">Calculate</button>
+      <button onclick="reset()">Reset</button>
+      <div class="result" id="result"></div>
+    </div>
+
+    <script>
+      // GSAP Animations
+      gsap.fromTo(
+        ".container",
+        { opacity: 0, scale: 0.8, rotateY: -20 },
+        { opacity: 1, scale: 1, rotateY: 0, duration: 1.5, ease: "power4.out" }
+      );
+
+      gsap.to("h1", { opacity: 1, y: 0, duration: 1, ease: "power4.out", delay: 0.5 });
+      gsap.to("input, select", {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        stagger: 0.2,
+        ease: "power2.out",
+        delay: 1,
+      });
+      gsap.to("button", {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        stagger: 0.2,
+        ease: "power2.out",
+        delay: 1.2,
+      });
+
+      // Function to calculate based on selected operation
+      function calculate() {
+        const num1 = parseFloat(document.getElementById("number1").value);
+        const num2 = parseFloat(document.getElementById("number2").value);
+        const operation = document.getElementById("operation").value;
+        const resultElement = document.getElementById("result");
+
+        // Validation
+        if (isNaN(num1) || isNaN(num2)) {
+          gsap.fromTo(
+            resultElement,
+            { opacity: 0, scale: 0 },
+            { opacity: 1, scale: 1, duration: 0.5, ease: "bounce.out" }
+          );
+          resultElement.textContent = "Please enter valid numbers!";
+          return;
+        }
+
+        let result;
+        switch (operation) {
+          case "add":
+            result = num1 + num2;
+            break;
+          case "subtract":
+            result = num1 - num2;
+            break;
+          case "multiply":
+            result = num1 * num2;
+            break;
+          case "divide":
+            result = num2 !== 0 ? (num1 / num2).toFixed(2) : "Cannot divide by zero!";
+            break;
+          default:
+            result = "Invalid operation";
+        }
+
+        resultElement.textContent = `Result: ${result}`;
+        gsap.fromTo(
+          resultElement,
+          { opacity: 0, scale: 0 },
+          { opacity: 1, scale: 1, duration: 0.5, ease: "elastic.out(1, 0.5)" }
+        );
+      }
+
+      // Function to reset the form
+      function reset() {
+        document.getElementById("number1").value = "";
+        document.getElementById("number2").value = "";
+        document.getElementById("operation").value = "add";
+        const resultElement = document.getElementById("result");
+        resultElement.textContent = "";
+        gsap.to(resultElement, { opacity: 0, scale: 0, duration: 0.3 });
+      }
+    </script>
   </body>
 </html>
