@@ -6,12 +6,3 @@ def index(request):
 
 def addition(request):
     return render(request, 'addition.html')  # Addition template
-
-def subtraction(request):
-    return render(request, 'subtraction.html')  # Subtraction template
-
-def multiplication(request):
-    return render(request, 'multiplication.html')  # Multiplication template
-
-def division(request):
-    return render(request, 'division.html')  # Division template
