@@ -4,5 +4,5 @@ from django.shortcuts import render
 def index(request):
     return render(request, 'index.html')
 
-def addition(request):
-    return render(request, 'addition.html')  # Addition template
+def Math(request):
+    return render(request, 'Math.html')  # Math template

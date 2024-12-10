@@ -3,5 +3,5 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name='index'),  # Home page
-    path('addition/', views.addition, name='addition'),  # Addition page
+    path('Math/', views.Math, name='Math'),  # Addition page
 ]
